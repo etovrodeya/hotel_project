@@ -1,0 +1,9 @@
+﻿{% extends "comments/comment_base.html" %}
+{% block content %}
+<h1>Отзывы пользователей</h1>
+{% for comment in comment_list %}
+<p />{{ comment.user }}
+<br /><a href="/comments/detail/{{ comment.id }}/">{{ comment.title }}</a>
+{{ comment.date }}
+{% endfor %}
+{% endblock %}

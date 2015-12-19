@@ -1,0 +1,14 @@
+{% extends "comments/comment_base.html" %}
+{% block content %}
+<h1>Новый отзыв</h1>
+{% if user.is_authenticated %}
+<form method="POST">
+      {% csrf_token  %}
+	    {{ form.as_p }}
+      <input id="save_comment" type="submit" value="Опубликовать" />
+</form>
+Ограничение 1000 символов.
+{% else %}
+<a href="/login">Залогиньтесь</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+Отзывы
+{% endblock %}
+{% block aside %}
+<ul>
+     <li><a href="{% url 'comments:view' %}">Архив отзывов</a></li>
+     <li><a href="{% url 'comments:edit' %}">Написать новый отзыв</a></li>
+</ul>
+{% endblock %}

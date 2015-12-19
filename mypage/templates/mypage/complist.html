@@ -1,0 +1,8 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+<h1>Список партнеров и количества их броней, которых больше {{ cob }}, за период с {{ sdate }} по {{ edate }}</h1>
+{% for items,value in cbc %}
+<a href="{% url 'mypage:compdetail' sdate edate items.id %}">{{ items.name }}</a>
+Количество броней: {{ value }}
+{% endfor %}
+{% endblock %}

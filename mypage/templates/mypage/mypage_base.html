@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+Мой профиль
+{% endblock %}
+{% block aside %}
+<ui>
+<li><a href="{% url 'mypage:view' %}">Мой профиль</a></li>
+<li><a href="{% url 'mypage:edit' %}">Редактировать мой профиль</a></li>
+<li><a href="{% url 'mypage:mybookings' %}">Мои брони</a></li>
+<li><a href="{% url 'mypage:myservices' %}">Мои дополнительные услуги</a></li>
+<li><a href="{% url 'mypage:discslist' '2015-12-18' %}">Акции</a></li>
+<li><a href="{% url 'mypage:addmoney' %}">Попольнить счет</a></li>
+<li><a href="{% url 'mypage:complist' '2015-01-01' '2017-01-01' '0' %}">Партнеры</a></li>
+<li><a href="{% url 'mypage:income' '2015-01-01' '2017-01-01' %}">Доход</a></li>
+<li><a href="{% url 'mypage:newusers' '2015-01-01' '2017-01-01' %}">Новые пользователи</a></li>
+</ui>
+{% endblock %}

@@ -1,0 +1,29 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+<h1>Список броней за период с {{ sdate }} по {{ edate }}</h1>
+{% for booking in bookings%}
+<a href="{% url 'booking:conf' booking.id %}">Номер брони: {{ booking.id }}</a>
+Заказчик: {{ booking.person }}
+<br />Дата заезда: {{ booking.s_date }}
+<br />Дата выезда: {{ booking.e_date }}
+<br />Номер: {{ booking.room }}
+<br />Удалена: {{ booking.is_delete }}
+<br />Количество детей: {{ booking.child }}
+<br />Количество человек: {{ booking.number_peoples }}
+<br />Контракт: {{ booking.contract }}
+<br />Дата заказа: {{ booking.date }}
+<br />Цена: {{ booking.price }}
+{% endfor %}
+<p />Доход с броней: {{ ib }}
+<h1>Список заказов дополнительных услуг за период с {{ sdate }} по {{ edate }}</h1>
+{% for serviceorder in serviceorders %}
+<a href="{% url 'booking:confservice' serviceorder.id %}">Номер заказа услуги: {{ serviceorder.id }}</a>
+Заказчик: {{ serviceorder.person }}
+<br />Услуга: {{ serviceorder.service }}
+<br />Бронь: {{ serviceorder.booking }}
+<br />Дата заказа: {{ serviceorder.date }}
+<br />Стоимость: {{ serviceorder.price }}
+<br />Удалена: {{ serviceorder.is_delete }}
+{% endfor %}
+<p />Доход с дополнительных услуг: {{ iso }}
+{% endblock %}

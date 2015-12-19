@@ -1,0 +1,12 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+<h1>Подтверждение заказа дополнительной услуги</h1>
+{% if user.is_authenticated %}
+{{ message }} {{name}}
+{{ price }}
+<p><a href="valid/">Подтвердить</a>
+<a href="delete/">удалить</a>
+{% else %}
+<a href="{% url 'mypage:login' %}">Залогиньтесь</a>
+{% endif %}
+{% endblock %}

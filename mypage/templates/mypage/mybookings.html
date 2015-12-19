@@ -1,0 +1,16 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+{% for booking in mybookings %}
+<a href="{% url 'booking:conf' booking.id %}">Номер брони: {{ booking.id }}</a>
+Заказчик: {{ booking.person }}
+<br />Дата заезда: {{ booking.s_date }}
+<br />Дата выезда: {{ booking.e_date }}
+<br />Номер: {{ booking.room }}
+<br />Удалена: {{ booking.is_delete }}
+<br />Количество детей: {{ booking.child }}
+<br />Количество человек: {{ booking.number_peoples }}
+<br />Контракт: {{ booking.contract }}
+<br />Дата заказа: {{ booking.date }}
+<br />Цена: {{ booking.price }}
+{% endfor %}
+{% endblock %}

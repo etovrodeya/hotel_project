@@ -1,0 +1,11 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+{% for serviceorder in myso %}
+<a href="{% url 'booking:confservice' serviceorder.id %}">Номер заказа услуги: {{ serviceorder.id }}</a>
+Заказчик: {{ serviceorder.person }}
+<br />Бронь: {{ serviceorder.booking }}
+<br />Дата заказа: {{ serviceorder.date }}
+<br />Цена услуги: {{ serviceorder.price }}
+<br />Удалена: {{ serviceorder.is_delete }}
+{% endfor %}
+{% endblock %}

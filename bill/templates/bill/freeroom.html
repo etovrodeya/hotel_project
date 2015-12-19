@@ -1,0 +1,7 @@
+{% extends "bill/booking_base.html" %}
+{% block content %}
+Свободные комнаты в период с {{ sdate }} по {{ edate }}
+{% for item,value in freeroom %}
+<a href="{% url 'booking:roomdetail' item.housing item.floor item.number %}">{{ item }}</a>
+{% endfor %}
+{% endblock %}

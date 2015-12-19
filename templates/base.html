@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles%}
+    <head>
+       <title>{% block title %}Отель "Ласточка"{% endblock %}</title>
+	     <meta charset="utf-8">
+		 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+		 <script type="text/javascript">
+		     function hide(id) {
+			     var o=document.getElementById(id).style;
+				 if (o.display=='block'){
+				 o.display='none';}
+				 else{
+				 o.display='block';}
+				 }
+		 </script>
+	 </head>
+	<body>
+	 <header>
+	     <div class="left_side" id="left-side">
+		         <h1 class="logo_text1">
+				     <a href=""><img src="{% static 'images/logo.png' %}" height="50" width="200" alt="logo"></a>
+					 <span>Отель "Ласточка"</span>
+				 </h1>
+	             <div class="left_menu">
+		             <ul>
+		                 <li><a href="{% url 'mypage:home' %}">Главная</a></li>
+				         <li><a href="{% url 'mypage:view' %}">Моя страница</a></li>
+						 <li><a href="{% url 'mypage:discslist' '2015-12-18' %}">Акции</a></li>
+				         <li><a href="{% url 'comments:view' %}">Отзывы</a></li>
+				         <li><a href="{% url 'booking:freeroom' '2015-12-01' '2016-01-01' %}">Свободные комнаты</a></li>
+						 <li><a href="{% url 'booking:booking' %}">Оформление брони</a></li>
+						 <li><a href="{% url 'booking:servicelist' %}">Дополнительные услуги</a></li>
+				         <li><a href="{% url 'mypage:about' %}">О проекте</a></li>
+				         <br />
+						 <br />
+						 <br />
+						 <br />
+						 <span class="logo_text1">Здраствуй, {% if user.is_authenticated %}{{ user.firstname }}{% else %}гость{% endif %}</span>
+						 <li>{% if user.is_authenticated %}<a href="{% url 'mypage:logout' %}">Выйти</a>{% else %}<a href="{% url 'mypage:login' %}">Войти</a>{% endif %}</li>
+						 <li><a href="{% url 'mypage:reg' %}">Зарегистрироваться</a></li>
+			         
+					 </ul>
+		     </div>
+	     </div>
+		 <a class="left_swap" onclick="hide('left-side')"></a>
+	 </header>
+	 <div class="content">
+	     <div class="text">
+		     <aside>{% block aside %}Правая колонка{% endblock %}</aside>
+			 <article>{% block content %}Левая колонка{% endblock %}</article>
+	     </div>
+	 </div>
+	 <footer class="copyright">
+    Copyright Пискунов Андрей {% now "Y" %}г.
+	</footer>
+	</body>
+</html>

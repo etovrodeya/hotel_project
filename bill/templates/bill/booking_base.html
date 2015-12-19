@@ -1,0 +1,13 @@
+﻿{% extends "base.html" %}
+{% block title %}
+Раздел бронирования
+{% endblock %}
+{% block aside %}
+<ui>
+    <li><a href="{% url 'booking:booking' %}">Забронировать номер</a></li>
+    <li><a href="{% url 'booking:freeroom' '2015-12-01' '2016-01-01' %}">Список свободных номеров</a></li>
+    <li><a href="{% url 'booking:freeroomws' '2015-12-01' '2016-01-01' 'budget'%}">Список свободных номеров среди определенного класса</a></li>
+    <li><a href="{% url 'booking:servicelist' %}">Список дополнительных услуг</a></li>
+    <li><a href="{% url 'booking:serviceorder' %}">Заказать дополнительную услугу</a></li>
+</ui>
+{% endblock %}

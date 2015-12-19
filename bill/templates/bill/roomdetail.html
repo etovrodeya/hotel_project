@@ -1,0 +1,8 @@
+{% extends "bill/booking_base.html" %}
+{% block content %}
+<h1>{{ room.housing }} {{ room.floor }} {{ room.number }}</h1>
+<p />Класс номера: {{ room.style }}
+<br />Количество спальных мест: {{ room.number_beds }}
+<br /> Цена за 24 часа: {{ room.per_night }}
+<p /> <a href="{% url 'booking:booking' %}">Перейти на страницу формирования брони</a>
+{% endblock %}

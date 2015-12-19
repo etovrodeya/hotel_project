@@ -1,0 +1,36 @@
+{% extends "mypage/mypage_base.html" %}
+{% block content %}
+{{ user.lastname }} {{ user.firstname }} {{ user.middlename }}
+<br />Адресс электронной почты: {{ user.email }}
+<br />Пол: {{ user.sex }}
+<br />День рождения: {{ user.date_of_birth }}
+<br />Страна: {{ user.country }}
+<br />Город: {{ user.city }}
+<br />Дата регистрации: {{ user.register_date }}
+<br />Статус пользователя: {{ user.staff }}
+<p /> Баланс: {{ user.total_money }}
+<h1> Список активных броней:</h1>
+{% for booking in ub %}
+<p />{{ forloop.counter }}. Номер брони: {{ booking.id }}
+<br />Заказчик: {{ booking.person }}
+<br />Дата заезда: {{ booking.s_date }}
+<br />Дата выезда: {{ booking.e_date }}
+<br />Номер: {{ booking.room }}
+<br />Удалена: {{ booking.is_delete }}
+<br />Количество детей: {{ booking.child }}
+<br />Количество человек: {{ booking.number_peoples }}
+<br />Контракт: {{ booking.contract }}
+<br />Дата заказа: {{ booking.date }}
+<br />Цена: {{ booking.price }}
+{% endfor %}
+<h1>Список активных заказов дополнительных услуг:</h1>
+{% for serviceorder in uso %}
+<p />{{ forloop.counter }}. Номер заказа: {{ serviceorder.id }}
+<br />Заказчик: {{ serviceorder.person }}
+<br />Услуга: {{ serviceorder.service }}
+<br />Бронь: {{ serviceorder.booking }}
+<br />Дата заказа: {{ serviceorder.date }}
+<br />Стоимость: {{ serviceorder.price }}
+<br />Удалена: {{ serviceorder.is_delete }}
+{% endfor %}
+{% endblock %}

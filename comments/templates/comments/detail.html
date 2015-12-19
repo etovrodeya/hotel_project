@@ -1,0 +1,15 @@
+{% extends "comments/comment_base.html" %}
+{% block content %}
+<h1>{{ comment.title }}</h1>
+автор: {{ user.lastname }} {{ user.firstname }} {{ user.middlename }}
+<br />{{ user.email }} 
+<br />{{ comment.date }}
+<br /> Рейтинг: {{ rating }}
+<p /><span style="word-wrap:break-word;">{{ comment.comment}}</span>
+{% if user.is_authenticated %}
+<form action="./like/" method="post">
+{% csrf_token %}
+<input type="submit" value="Понравилось" />
+</form>
+{% endif %}
+{% endblock %}

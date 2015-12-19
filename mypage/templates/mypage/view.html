@@ -1,0 +1,13 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+<h1>Мой профиль</h1>
+{{ user.lastname }} {{ user.firstname }} {{ user.middlename }}
+<br />Адресс электронной почты: {{ user.email }}
+<br />Пол: {{ user.sex }}
+<br />День рождения: {{ user.date_of_birth }}
+<br />Страна: {{ user.country }}
+<br />Город: {{ user.city }}
+<br />Дата регистрации: {{ user.register_date }}
+<br />Статус пользователя: {{ user.staff }}
+<p /> Баланс: {{ user.total_money }}
+{% endblock %}

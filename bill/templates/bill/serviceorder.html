@@ -1,0 +1,13 @@
+{% extends "bill/booking_base.html" %}
+{% block content %}
+<h1>Заказ дополнительной услуги</h1>
+{% if user.is_authenticated %}
+<form method="POST">
+      {% csrf_token  %}
+	    {{ form.as_p }}
+      <input id="save_comment" type="submit" value="Save" />
+</form>
+{% else %}
+<a href="/login">Залогиньтесь</a>
+{% endif %}
+{% endblock %}

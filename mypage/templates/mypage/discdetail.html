@@ -1,0 +1,8 @@
+{% extends "mypage/mypage_base.html" %}
+{% block content %}
+<h1>{{ disc.name }}</h1>
+Действительна с {{ disc.s_date }} по {{ disc.e_date }}
+<br />Скидка на бронирование: {{ disc.booking_discount }}%
+<br />Скидка на дополнительные услуги: {{ disc.service_discount }}%
+<p /> <a href="{% url 'booking:booking' %}">Перейти на страницу формирования брони</a>
+{% endblock %}

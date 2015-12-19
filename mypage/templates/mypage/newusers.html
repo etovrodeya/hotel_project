@@ -1,0 +1,7 @@
+﻿{% extends "mypage/mypage_base.html" %}
+{% block content %}
+Новые пользователи за период с {{ sdate }} по {{ edate }}
+{% for user in newusers %}
+<a href="{% url 'mypage:userdetail' user.id %}">{{ user.lastname }} {{ user.firstname }} {{ user.middlename }}</a>
+{% endfor %}
+{% endblock %}

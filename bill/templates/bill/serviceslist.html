@@ -1,0 +1,9 @@
+{% extends "bill/booking_base.html" %}
+{% block content %}
+<h1>Список дополнительных услуг</h1>
+{% for serv in services %}
+<a href="{% url 'booking:serviceorder' %}">{{ serv.name }}</a>
+{{ serv.description }}
+<br />Цена за услугу: {{ serv.apiece }}
+{% endfor %}
+{% endblock %}
