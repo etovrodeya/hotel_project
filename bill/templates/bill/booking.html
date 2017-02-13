@@ -2,6 +2,8 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Оформление брони</h1>
+
+Формат ввода даты: DD.MM.YYYY
 <form method="POST">
       {% csrf_token  %}
 	    {{ form.as_p }}

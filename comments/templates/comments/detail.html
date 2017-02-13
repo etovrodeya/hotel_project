@@ -1,8 +1,8 @@
 {% extends "comments/comment_base.html" %}
 {% block content %}
 <h1>{{ comment.title }}</h1>
-автор: {{ user.lastname }} {{ user.firstname }} {{ user.middlename }}
-<br />{{ user.email }} 
+автор: {{ comment.user.lastname }} {{ comment.user.firstname }} {{ comment.user.middlename }}
+<br />{{ comment.user.email }}
 <br />{{ comment.date }}
 <br /> Рейтинг: {{ rating }}
 <p /><span style="word-wrap:break-word;">{{ comment.comment}}</span>

@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2%hrpgio@^b6em7=y35*t7xt173jp^($pz!5yhv$==0!xb1q6k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['etovrodeya.pythonanywhere.com']
 
 
 # Application definition
@@ -83,8 +83,8 @@ WSGI_APPLICATION = 'hotel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': 'hotel.db', 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/home/etovrodeya/hotel_project/hotel.db',
         #'ENGINE': 'django.db.backends.postgresql_psycopg2',
         #'NAME': 'Gostinechniy_Kompleks',
         #'USER': 'postgres',
@@ -109,13 +109,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hotel.settings'
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS  = (os.path.join(BASE_DIR, 'static'),)
 
 LOGIN_URL = r"/login/"
 
 AUTH_USER_MODEL = 'mypage.MpUser'
-
 
 SITE_ID=2

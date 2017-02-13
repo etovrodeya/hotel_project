@@ -29,9 +29,9 @@
 				         <li><a href="{% url 'mypage:view' %}">Моя страница</a></li>
 						 <li><a href="{% url 'mypage:discslist' '2015-12-18' %}">Акции</a></li>
 				         <li><a href="{% url 'comments:view' %}">Отзывы</a></li>
-				         <li><a href="{% url 'booking:freeroom' '2015-12-01' '2016-01-01' %}">Свободные комнаты</a></li>
+				         <li><a href="{% url 'booking:freeroom' '2015-12-01' '2016-01-01' %}">Свободные номера</a></li>
 						 <li><a href="{% url 'booking:booking' %}">Оформление брони</a></li>
-						 <li><a href="{% url 'booking:servicelist' %}">Дополнительные услуги</a></li>
+						 <li><a href="{% url 'booking:servicelist' %}">Услуги</a></li>
 				         <li><a href="{% url 'mypage:about' %}">О проекте</a></li>
 				         <br />
 						 <br />
@@ -40,7 +40,7 @@
 						 <span class="logo_text1">Здраствуй, {% if user.is_authenticated %}{{ user.firstname }}{% else %}гость{% endif %}</span>
 						 <li>{% if user.is_authenticated %}<a href="{% url 'mypage:logout' %}">Выйти</a>{% else %}<a href="{% url 'mypage:login' %}">Войти</a>{% endif %}</li>
 						 <li><a href="{% url 'mypage:reg' %}">Зарегистрироваться</a></li>
-			         
+
 					 </ul>
 		     </div>
 	     </div>
@@ -53,7 +53,7 @@
 	     </div>
 	 </div>
 	 <footer class="copyright">
-    Copyright Пискунов Андрей {% now "Y" %}г.
+    Copyright <a href="http://vk.com/id67368841">Пискунов Андрей</a> {% now "Y" %}г.
 	</footer>
 	</body>
 </html>

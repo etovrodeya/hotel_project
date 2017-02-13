@@ -1,6 +1,6 @@
 {% extends "mypage/mypage_base.html" %}
 {% block content %}
-<h1>Действующие скидки для {{ sdate }}</h1>
+<h1>Действующие скидки на {{ sdate }}</h1>
 {% for disc in discounts %}
 <a href="{% url 'mypage:discdetail' disc.contract_number %}">{{ disc.name }}</a>
 {% endfor %}

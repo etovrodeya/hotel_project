@@ -1,14 +1,13 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 {{ rules.title }}
 <p />{{ rules.comment }}
 {% endblock %}
 {% block aside %}
-<h1>5 отзывов с рейтингом</h1>
+<h1>5 последних отзывов</h1>
 {% for comment in top %}
-<p />{{ comment.comment.user }}<br/>
-<a href="{% url 'comments:detail' comment.comment.id %}">{{ comment.comment.title }}</a>
-Рейтинг: {{ comment.value }}<br/>
-Публикация: {{ comment.comment.date }}
+<p />{{ comment.user }}<br/>
+<a href="{% url 'comments:detail' comment.id %}">{{ comment.title }}</a>
+Публикация: {{ comment.date }}
 {% endfor %}
 {% endblock %}

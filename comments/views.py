@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 
 def CommentView(request):
-    comment_list=Comment.objects.all()
+    comment_list=Comment.objects.all().order_by('-date')
     context={
         'comment_list':comment_list,
         }

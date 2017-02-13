@@ -15,7 +15,7 @@ class BookingView(CreateView):
     template_name='bill/booking.html'
     model=Booking
     form_class = BookingForm
-    
+
     def form_valid(self, form):
         if form.instance.contract is not None:
             contract=Contract.objects.get(name=form.instance.contract)
@@ -27,6 +27,10 @@ class BookingView(CreateView):
                     return super(BookingView, self).form_valid(form)
                 else:
                     return HttpResponse('Выбранный контракт не подходит для вышей компании.<p><a href="/booking/">Вернуться на страницу бронирования</a>')
+            else:
+                form.instance.person = self.request.user
+                form.instance.is_delete=True
+                return super(BookingView, self).form_valid(form)
         else:
             form.instance.person = self.request.user
             form.instance.is_delete=True
@@ -36,7 +40,7 @@ def ConfirmtheBookingView(request,booking_id):
     args={}
     record=Booking.objects.get(pk=booking_id)
     date=record.e_date-record.s_date
-    if record.company is not None:
+    if record.contract is not None:
         price=(record.room.per_night*date.days)-((record.room.per_night*date.days)*(record.contract.booking_discount/100))
     else:
         price=(record.room.per_night*date.days)
@@ -49,26 +53,55 @@ def ValidBooking(request,booking_id):
         user=MpUser.objects.get(pk=request.user.id)
         record=Booking.objects.get(pk=booking_id)
         date=record.e_date-record.s_date
+        sbookings=Booking.objects.filter(s_date__range=(record.s_date,record.e_date),room__housing=record.room.housing,room__floor=record.room.floor,room__number=record.room.number)
+        ebookings=Booking.objects.filter(e_date__range=(record.s_date,record.e_date),room__housing=record.room.housing,room__floor=record.room.floor,room__number=record.room.number)
         nowtime= datetime.datetime.utcnow().replace(tzinfo=utc)
         if record.s_date<nowtime:
             return HttpResponse('Данную бронь активировать невозможно, т.к дата заезда уже прошла.<p><a href="/mypage/mybookings/">Вернуться на страницу просмотра броней</a>')
         if record.company is not None:
-            price=(record.room.per_night*date.days)-((record.room.per_night*date.days)*(record.contract.booking_discount/100))
+            if sbookings.filter(is_delete=False).exists() or ebookings.filter(is_delete=False).exists():
+                record.is_delete=True
+                record.save()
+                return HttpResponse('Данный номер уже имеет активную бронь в указаном промежутке дат.<p><a href="/mypage/mybookings/">Вернуться на страницу просмотра броней</a>')
+            else:
+                if record.contract is not None:
+                    price=(record.room.per_night*date.days)-((record.room.per_night*date.days)*(record.contract.booking_discount/100))
+                    record.price=price
+                    user.total_money=user.total_money-record.price
+                    record.is_delete=False
+                    record.save()
+                    user.save()
+                    return HttpResponseRedirect("/mypage/mybookings/")
+                else:
+                    price=record.room.per_night*date.days
+                    record.price=price
+                    user.total_money=user.total_money-record.price
+                    record.is_delete=False
+                    record.save()
+                    user.save()
+                    return HttpResponseRedirect("/mypage/mybookings/")
         else:
-            price=(record.room.per_night*date.days)
-        sbookings=Booking.objects.filter(s_date__range=(record.s_date,record.e_date))
-        ebookings=Booking.objects.filter(e_date__range=(record.s_date,record.e_date))
-        if sbookings.filter(is_delete=False).exists() or ebookings.filter(is_delete=False).exists():
-            record.is_delete=True
-            record.save()
-            return HttpResponse('Данный номер уже имеет активную бронь в указаном промежутке дат.<p><a href="/mypage/mybookings/">Вернуться на страницу просмотра броней</a>')
-        else:
-            record.price=price
-            user.total_money=user.total_money-record.price
-            record.is_delete=False
-            record.save()
-            user.save()
-            return HttpResponseRedirect("/mypage/mybookings/")
+            if sbookings.filter(is_delete=False).exists() or ebookings.filter(is_delete=False).exists():
+                record.is_delete=True
+                record.save()
+                return HttpResponse('Данный номер уже имеет активную бронь в указаном промежутке дат.<p><a href="/mypage/mybookings/">Вернуться на страницу просмотра броней</a>')
+            else:
+                if record.contract is not None:
+                    price=(record.room.per_night*date.days)-((record.room.per_night*date.days)*(record.contract.booking_discount/100))
+                    record.price=price
+                    user.total_money=user.total_money-record.price
+                    record.is_delete=False
+                    record.save()
+                    user.save()
+                    return HttpResponseRedirect("/mypage/mybookings/")
+                else:
+                    price=record.room.per_night*date.days
+                    record.price=price
+                    user.total_money=user.total_money-record.price
+                    record.is_delete=False
+                    record.save()
+                    user.save()
+                    return HttpResponseRedirect("/mypage/mybookings/")
     else:
         return HttpResponseRedirect("/login/")
 

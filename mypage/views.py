@@ -16,7 +16,7 @@ def home_page(request):
     args={}
     rules=get_object_or_404(Comment,title='Приветствие')
     args['rules']=rules
-    comments=Rating.objects.all().order_by('value')[:5]
+    comments=Comment.objects.all().order_by('-date')[:5]
     args['top']=comments
     return render(request, 'mypage/index.html',args)
 
@@ -24,7 +24,7 @@ def aboutpage(request):
     args={}
     rules=get_object_or_404(Comment,title='О проекте')
     args['rules']=rules
-    comments=Rating.objects.all().order_by('value')[:5]
+    comments=Comment.objects.all().order_by('-date')[:5]
     args['top']=comments
     return render(request, 'mypage/index.html',args)
 
@@ -88,7 +88,7 @@ def profileview(request):
 def myBookings(request):
     if request.user.is_authenticated():
         args={}
-        mybookings=Booking.objects.filter(person=request.user)
+        mybookings=Booking.objects.filter(person=request.user).order_by('-pk')
         args['mybookings']=mybookings
         return render(request,'mypage/mybookings.html',args)
     else:
@@ -97,7 +97,7 @@ def myBookings(request):
 def myServices(request):
     if request.user.is_authenticated():
         args={}
-        myso=Service_order.objects.filter(person=request.user)
+        myso=Service_order.objects.filter(person=request.user).order_by('-pk')
         args['myso']=myso
         return render(request,'mypage/myservices.html',args)
     else:
@@ -223,7 +223,7 @@ def compdetail(request,sdate,edate,comp_id):
 def discountlist(request,sdate):
     if request.user.is_authenticated():
         args={}
-        discs=Contract.objects.filter(s_date=sdate,is_active=True,company=None)
+        discs=Contract.objects.filter(s_date__lte=sdate,is_active=True,company=None).filter(e_date__gte=sdate)
         args['discounts']=discs
         args['sdate']=sdate
         return render(request,'mypage/discslist.html',args)

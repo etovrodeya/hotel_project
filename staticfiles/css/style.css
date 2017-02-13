@@ -1,0 +1,143 @@
+﻿.left_swap{
+	display:block;
+	position:fixed;
+	width:50px;
+	left:0;
+	top:0;
+	height:100%;
+	z-index:6;
+	background:url(../images/swipe.png) #1d282b center 20px no-repeat;
+}
+
+/*Боковая менюшка*/
+.left_side{
+	display:none;
+	background: #1d282b;
+	width: 300px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	z-index: 5;
+}
+.logo_text1{
+	padding: 20px 10px;
+	color:#ffffff;
+	font-size: 18px;
+	line-height: 30px;
+	font-weight: normal;
+	text-align: center;
+}
+.logo_text1 a{
+	display: inline-block;
+}
+.logo_text1 span{
+	color:#72898f;
+	font-size: 18px;
+	line-height: 24px;
+	padding: 0 10px 18px;
+	text-align: center;
+	display: block;
+}
+.left_menu{
+	
+	margin-top: 30px;
+}
+.left_menu ul{
+	display: block;
+	list-style-type: none;
+}
+.left_menu li{
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.left_menu li a{
+	display: block;
+	line-height: 30px;
+	font-size: 18px;
+	color:#ffffff;
+	text-decoration: none;
+	padding-left: 60px;
+}
+.left_menu li a:hover{
+	background: #343e41;
+}
+.text h1{
+	 margin-top:0px;
+	 margin-left: 0px;
+}
+.text aside {
+ width: 300px;
+ float: right;
+ height:50%;
+ min-height:680px;
+ background:#e5e5e5;
+}
+.text article { /* Левая колонка */
+ margin-right: 300px; /* Отступ справа */
+ margin-top:0px;
+ margin-left: 0px;
+ min-height:480px;
+}
+.text aside ul{
+	padding:0px;
+	margin:0px;
+}
+.text {
+	font-size: 18px;
+	line-height: 24px;
+}
+.content{
+	width: 768px; /* Ширина макета */
+	position: relative;
+	margin: auto;
+    background: #ffffff;
+    min-height: 680px;
+    min-width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	z-index:4;
+}
+.content a{
+	display: block;
+	line-height: 30px;
+	color:#111111;
+	text-decoration: none;
+	background:#e5e5e5;
+}
+.content a:hover{
+	background: #ffffff;
+}
+.content li{
+	list-style-type: none;
+}
+.auto_img{
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+body{
+	background:#e5e5e5;
+	z-index:3;
+}
+.copyright{
+	position: fixed; /* Фиксированное положение */
+    left: 0;
+	bottom: 0; /* Левый нижний угол */
+	background: #ffffff;
+	width:100%;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	text-align:center;
+	z-index:20;
+}
+@media screen and (max-width:860px){
+    .left_swap{
+        display: block;
+    }
+    .text{
+        padding-left: 45px;
+    }
+	.text article{
+		margin-top:0px;
+	}
+}
